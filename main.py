@@ -19,7 +19,7 @@ def on_chat_message(msg):
         auth = True
     if (not auth or content_type != 'voice') and chat_type=="private":
         bot.sendMessage(chat_id, "سرت سلامت باشه!")
-    if auth and content_type and chat_type=="private" == 'voice':
+    if auth and content_type== 'voice' and chat_type=="private":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
                    [InlineKeyboardButton(text='بره؟!', callback_data='press')],
                ])
