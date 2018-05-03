@@ -95,7 +95,7 @@ def done(bot, update, user_data):
     bot.send_audio(chat_id = CHANNEL, audio=audio, caption = CHANNEL)
     bot.send_voice(chat_id = CHANNEL, voice=open(file_id + '.ogg', 'rb'))
 
-    update.message.reply_text("رفت رو کانال!")
+    update.message.reply_text("رفت رو کانال!", reply_markup = no_markup)
 
     user_data.clear()
     os.remove(file_id+".mp3")
@@ -112,7 +112,7 @@ def cancel(bot, update, user_data):
         os.remove(file_id+".ogg")
 
     user_data.clear()
-    update.message.reply_text("باشه")
+    update.message.reply_text("باشه", reply_markup= no_markup)
     
     return ConversationHandler.END
 
