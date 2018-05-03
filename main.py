@@ -104,6 +104,17 @@ def done(bot, update, user_data):
     
     return ConversationHandler.END
 
+def cancel(bot, update, user_data):
+    if "audio" in user_data.keys():
+        audio = user_data['audio']
+        file_id = audio.file_id
+        os.remove(file_id+".mp3")
+        os.remove(file_id+".ogg")
+
+    user_data.clear()
+    update.message.reply_text("باشه")
+    
+    return ConversationHandler.END
 
 def error(bot, update, error):
     """Log Errors caused by Updates."""
@@ -138,7 +149,7 @@ def main():
                     ],
         },
 
-        fallbacks = [RegexHandler('^بفرست کانال$', done, pass_user_data = True)]
+        fallbacks = [RegexHandler('^بفرست کانال$', done, pass_user_data = True),RegexHandler('^بیخیال$', cancel, pass_user_data = True)]
     )
 
     dp.add_handler(conv_handler)
